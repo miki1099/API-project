@@ -3,8 +3,9 @@ package util;
 import model.Criminal;
 import model.CriminalHolder;
 
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ActionsImpl {
 
@@ -27,8 +28,16 @@ public class ActionsImpl {
     public void getYoungestCriminal() {
         createCriminalHoler();
 
-
-
     }
+
+    public void getOldestCriminal() {
+        createCriminalHoler();
+        List<Criminal> criminalList = Arrays.asList(criminalHolder.getItems());
+        criminalList = criminalList.stream().filter(criminal -> !criminal.getAge_min().equals("None"))
+                .collect(Collectors.toList());
+        criminalList.sort(Comparator.comparing(Criminal::getAge_min));
+        System.out.println(criminalList.get(0));
+    }
+
 
 }

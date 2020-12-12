@@ -44,7 +44,7 @@ public class Menu {
                 //TODO get youngest criminals
                 break;
             case 3:
-                //TODO get oldest criminals
+                actions.getOldestCriminal();
                 break;
             case 4:
                 Runtime.getRuntime().exit(0);
