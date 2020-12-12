@@ -1,10 +1,14 @@
+import util.ActionsImpl;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
 
+    private ActionsImpl actions;
 
     public Menu() {
+        actions = new ActionsImpl();
         startMenu();
     }
 
@@ -34,7 +38,7 @@ public class Menu {
     private void executeAction(int action){
         switch (action){
             case 1:
-                //TODO get random criminal
+                actions.getRandomCriminal();
                 break;
             case 2:
                 //TODO get youngest criminals
