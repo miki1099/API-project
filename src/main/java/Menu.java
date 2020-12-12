@@ -15,8 +15,8 @@ public class Menu {
     private void startMenu(){
         while(true){
             System.out.println("1. Get random criminal.");
-            System.out.println("2. Show 10 youngest criminals.");
-            System.out.println("3. Show 10 oldest criminals.");
+            System.out.println("2. Show youngest criminal.");
+            System.out.println("3. Show oldest criminal.");
             System.out.println("4. Exit.");
 
             Scanner scanner= new Scanner(System.in);
@@ -41,7 +41,7 @@ public class Menu {
                 actions.getRandomCriminal();
                 break;
             case 2:
-                //TODO get youngest criminals
+                actions.getYoungestCriminal();
                 break;
             case 3:
                 actions.getOldestCriminal();
