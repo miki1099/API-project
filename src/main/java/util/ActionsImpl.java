@@ -18,21 +18,21 @@ public class ActionsImpl {
 
 
     public void getRandomCriminal() {
-        createCriminalHolder();
+        if(criminalHolder == null) createCriminalHolder();
         Random randomNumber = new Random();
         int rand = randomNumber.nextInt(criminalHolder.getItems().length);
         System.out.println(criminalHolder.getItems()[rand]);
     }
 
     public void getYoungestCriminal() {
-        createCriminalHolder();
+        if(criminalHolder == null) createCriminalHolder();
         List<Criminal> bufCriminalList = Arrays.asList(criminalHolder.getItems());
         bufCriminalList = bufCriminalList.stream().filter(criminal -> !criminal.getAge_min().equals("None")).collect(Collectors.toList());
         bufCriminalList.sort(Comparator.comparing(Criminal::getAge_min).reversed());
         System.out.println(bufCriminalList.get(0));
     }
     public void getOldestCriminal() {
-        createCriminalHolder();
+        if(criminalHolder == null) createCriminalHolder();
         List<Criminal> criminalList = Arrays.asList(criminalHolder.getItems());
         criminalList = criminalList.stream().filter(criminal -> !criminal.getAge_min().equals("None"))
                 .collect(Collectors.toList());
