@@ -1,5 +1,6 @@
 package util;
 
+import dao.CriminalDao;
 import model.Criminal;
 import model.CriminalHolder;
 
@@ -13,9 +14,14 @@ public class ActionsImpl {
     private void createCriminalHolder() {
         FBIStringReader fbiStringReader = new FBIStringReader();
         criminalHolder = fbiStringReader.getCriminalDetails();
+        CriminalDao criminalDao = new CriminalDao();
+        for (int i = 0; i < criminalHolder.getItems().length; i++){
+            if(!criminalDao.isCriminalInDataBase(criminalHolder.getItems()[i])){
+                criminalDao.insert(criminalHolder.getItems()[i]);
+            }
+
+        }
     }
-
-
 
     public void getRandomCriminal() {
         if(criminalHolder == null) createCriminalHolder();
