@@ -6,6 +6,7 @@ import util.HibernateUtil;
 
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
+import javax.persistence.Query;
 import java.util.List;
 
 public class CriminalDao {
@@ -40,6 +41,34 @@ public class CriminalDao {
         } catch (NonUniqueResultException e){
             return true;
         }
+    }
+
+    public Criminal getRandomCriminal(){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Criminal criminal = (Criminal) session.createQuery("from Criminal order by rand()")
+                .setMaxResults(1).getSingleResult();
+        session.close();
+        return criminal;
+    }
+
+    public Criminal getYoungestCriminal(){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Criminal criminal = (Criminal) session.createQuery("select c from Criminal c " +
+                "where c.age_min > 0" +
+                "order by c.age_min")
+                .setMaxResults(1).getSingleResult();
+        session.close();
+        return criminal;
+    }
+
+    public Criminal getOldestCriminal(){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Criminal criminal = (Criminal) session.createQuery("select c from Criminal c " +
+                "where c.age_min > 0" +
+                "order by c.age_min desc")
+                .setMaxResults(1).getSingleResult();
+        session.close();
+        return criminal;
     }
 
 }

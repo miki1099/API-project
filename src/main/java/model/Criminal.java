@@ -19,7 +19,7 @@ public class Criminal {
     @Column(name = "CR_TITLE")
     private String title;
     @Column(name = "CR_AGE")
-    private String age_min;
+    private Integer age_min;
     @Column(name = "CR_SEX")
     private String sex;
     @Column(name = "CR_UID")
@@ -35,14 +35,27 @@ public class Criminal {
 
     @Override
     public String toString() {
-        String result = "----------------------------------------------" +'\n' +
-                "title: " + title + '\n' +
-                "age: " + age_min + '\n' +
-                "sex: " + sex + '\n' +
-                "nationality: " + nationality + '\n' +
-                "hair: " + hair_raw + '\n' +
-                "eyes: " + eyes + '\n' +
-                "race: " + race + '\n';
+        String result;
+        if(age_min < 0){
+            result = "----------------------------------------------" +'\n' +
+                    "title: " + title + '\n' +
+                    "age: " + "Unknown" + '\n' +
+                    "sex: " + sex + '\n' +
+                    "nationality: " + nationality + '\n' +
+                    "hair: " + hair_raw + '\n' +
+                    "eyes: " + eyes + '\n' +
+                    "race: " + race + '\n';
+        } else {
+            result = "----------------------------------------------" +'\n' +
+                    "title: " + title + '\n' +
+                    "age: " + age_min + '\n' +
+                    "sex: " + sex + '\n' +
+                    "nationality: " + nationality + '\n' +
+                    "hair: " + hair_raw + '\n' +
+                    "eyes: " + eyes + '\n' +
+                    "race: " + race + '\n';
+        }
+
         result = result.replace("None", "Unknow");
         return result;
     }
