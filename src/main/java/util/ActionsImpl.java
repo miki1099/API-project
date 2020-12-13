@@ -11,6 +11,10 @@ public class ActionsImpl {
 
     private CriminalHolder criminalHolder;
 
+    private static int compare(Criminal c1, Criminal c2) {
+        return Integer.parseInt(c1.getAge_min()) - Integer.parseInt(c2.getAge_min());
+    }
+
     private void createCriminalHolder() {
         FBIStringReader fbiStringReader = new FBIStringReader();
         criminalHolder = fbiStringReader.getCriminalDetails();
@@ -34,17 +38,17 @@ public class ActionsImpl {
         if(criminalHolder == null) createCriminalHolder();
         List<Criminal> bufCriminalList = Arrays.asList(criminalHolder.getItems());
         bufCriminalList = bufCriminalList.stream().filter(criminal -> !criminal.getAge_min().equals("None")).collect(Collectors.toList());
-        bufCriminalList.sort(Comparator.comparing(Criminal::getAge_min).reversed());
+        bufCriminalList.sort(ActionsImpl::compare);
         System.out.println(bufCriminalList.get(0));
     }
+
     public void getOldestCriminal() {
         if(criminalHolder == null) createCriminalHolder();
         List<Criminal> criminalList = Arrays.asList(criminalHolder.getItems());
         criminalList = criminalList.stream().filter(criminal -> !criminal.getAge_min().equals("None"))
                 .collect(Collectors.toList());
-        criminalList.sort(Comparator.comparing(Criminal::getAge_min));
-        System.out.println(criminalList.get(0));
+        criminalList.sort(ActionsImpl::compare);
+        int listLenght = criminalList.size() - 1;
+        System.out.println(criminalList.get(listLenght));
     }
-
-
 }
