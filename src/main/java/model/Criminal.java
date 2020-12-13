@@ -32,14 +32,17 @@ public class Criminal {
     private String eyes;
     @Column(name = "CR_RACE")
     private String race;
+
     @Override
     public String toString() {
-        String result = "title: " + title + '\n' +
+        String result = "----------------------------------------------" +'\n' +
+                "title: " + title + '\n' +
                 "age: " + age_min + '\n' +
                 "sex: " + sex + '\n' +
                 "nationality: " + nationality + '\n' +
                 "hair: " + hair_raw + '\n' +
-                "eyes: " + eyes + '\n';
+                "eyes: " + eyes + '\n' +
+                "race: " + race + '\n';
         result = result.replace("None", "Unknow");
         return result;
     }

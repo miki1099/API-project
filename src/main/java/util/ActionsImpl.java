@@ -27,15 +27,26 @@ public class ActionsImpl {
         }
     }
 
+    private void fillCriminalHolderFromDatabase(){
+        if(criminalHolder == null){
+            CriminalDao criminalDao = new CriminalDao();
+            criminalHolder = new CriminalHolder();
+            List<Criminal> bufList = criminalDao.getAll();
+            Criminal[] bufTable = new Criminal[bufList.size()];
+            bufList.toArray(bufTable);
+            criminalHolder.setItems(bufTable);
+        }
+    }
+
     public void getRandomCriminal() {
-        if(criminalHolder == null) createCriminalHolder();
+        fillCriminalHolderFromDatabase();
         Random randomNumber = new Random();
         int rand = randomNumber.nextInt(criminalHolder.getItems().length);
         System.out.println(criminalHolder.getItems()[rand]);
     }
 
     public void getYoungestCriminal() {
-        if(criminalHolder == null) createCriminalHolder();
+        fillCriminalHolderFromDatabase();
         List<Criminal> bufCriminalList = Arrays.asList(criminalHolder.getItems());
         bufCriminalList = bufCriminalList.stream().filter(criminal -> !criminal.getAge_min().equals("None")).collect(Collectors.toList());
         bufCriminalList.sort(ActionsImpl::compare);
@@ -43,12 +54,16 @@ public class ActionsImpl {
     }
 
     public void getOldestCriminal() {
-        if(criminalHolder == null) createCriminalHolder();
+        fillCriminalHolderFromDatabase();
         List<Criminal> criminalList = Arrays.asList(criminalHolder.getItems());
         criminalList = criminalList.stream().filter(criminal -> !criminal.getAge_min().equals("None"))
                 .collect(Collectors.toList());
         criminalList.sort(ActionsImpl::compare);
         int listLenght = criminalList.size() - 1;
         System.out.println(criminalList.get(listLenght));
+    }
+
+    public void updateDataBase() {
+        createCriminalHolder();
     }
 }
