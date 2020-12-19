@@ -17,8 +17,9 @@ public class Menu {
             System.out.println("1. Get random criminal.");
             System.out.println("2. Show youngest criminal.");
             System.out.println("3. Show oldest criminal.");
-            System.out.println("4. Update database.");
-            System.out.println("5. Exit.");
+            System.out.println("4. Show criminals by hair color.");
+            System.out.println("5. Update database.");
+            System.out.println("6. Exit.");
 
             Scanner scanner= new Scanner(System.in);
             System.out.print("> ");
@@ -48,11 +49,15 @@ public class Menu {
                 actions.getOldestCriminal();
                 break;
             case 4:
-                actions.updateDataBase();
+                actions.getCriminalsByHairColor();
                 break;
             case 5:
+                actions.updateDataBase();
+                break;
+            case 6:
                 Runtime.getRuntime().exit(0);
                 break;
+
             default:
                 System.out.println("You have to choose number from menu list!");
         }

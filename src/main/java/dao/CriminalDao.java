@@ -71,4 +71,14 @@ public class CriminalDao {
         return criminal;
     }
 
+    public List getCriminalByHairColor(String color) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List criminalList = session.createQuery("select c from Criminal c " +
+                "where c.hair_raw like :color")
+                .setParameter("color", "%"+color+"%")
+                .getResultList();
+
+        return criminalList;
+    }
+
 }
