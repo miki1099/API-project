@@ -19,7 +19,8 @@ public class Menu {
             System.out.println("3. Show oldest criminal.");
             System.out.println("4. Show criminals by hair color.");
             System.out.println("5. Update database.");
-            System.out.println("6. Exit.");
+            System.out.println("6. Export criminals to excel.");
+            System.out.println("7. Exit.");
 
             Scanner scanner= new Scanner(System.in);
             System.out.print("> ");
@@ -55,6 +56,9 @@ public class Menu {
                 actions.updateDataBase();
                 break;
             case 6:
+                actions.exportAllToExcel();
+                break;
+            case 7:
                 Runtime.getRuntime().exit(0);
                 break;
 
