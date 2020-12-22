@@ -1,12 +1,29 @@
 # API-project
 
-App using api from: https://www.fbi.gov/wanted/api
-to get:
--random criminal
--10 youngest criminals
--10 oldest criminals
+## App using api: 
+  FBI API from: https://www.fbi.gov/wanted/api
 
+## App have features like:
+ - get random criminal
+ 
+ - get youngest criminal
+ 
+ - get oldest criminal
 
-libraries:
+ - get result list searching by hair color
+ 
+ - export all criminals to xlsx
+ 
+ - get all criminals to MySql database
+
+## Used framework:
+ - Hibernate
+ 
+ - Swing
+
+## libraries:
 - google gson
--lombok
+ 
+- lombok
+ 
+- poi
